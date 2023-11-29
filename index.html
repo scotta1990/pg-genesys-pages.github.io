@@ -5,6 +5,9 @@
     <script type="text/javascript">
         // Obtain a reference to the platformClient object
         const platformClient = require('platformClient');
+        const clientId = "4a707f1e-1ced-4dba-9c0d-9d1055addbdc";
+        const redirectUri = "https://scotta1990.github.io/pg-genesys-pages.github.io/"
+
         const client = platformClient.ApiClient.instance;
         client.loginImplicitGrant(clientId, redirectUri, { state: state})
         .then((data => {
