@@ -19,7 +19,7 @@
         var authorizationApi = new platformClient.AuthorizationApi();
 
         const client = platformClient.ApiClient.instance;
-        client.loginImplicitGrant(clientId, redirectUri, { state: state }).then((data) => {
+        client.loginImplicitGrant(clientId, redirectUri).then((data) => {
             console.log("Here")
             console.log(data);
             // Do authenticated things
