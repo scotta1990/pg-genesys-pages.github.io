@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
     <script src="https://sdk-cdn.mypurecloud.com/javascript/latest/purecloud-platform-client-v2.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS PG Gen</title>
+</head>
+<body>
+    <h1>MS PG Genesys</h1>
     <script type="text/javascript">
         // Obtain a reference to the platformClient object
         const platformClient = require('platformClient');
@@ -9,20 +16,16 @@
         const redirectUri = "https://scotta1990.github.io/pg-genesys-pages.github.io/"
 
         const client = platformClient.ApiClient.instance;
-        client.loginImplicitGrant(clientId, redirectUri, { state: state})
-        .then((data => {
-            console.log(data)
-        }))
-        .catch((error) => {
-            console.log(error);
+        client.loginImplicitGrant(clientId, redirectUri, { state: state })
+        .then((data) => {
+            console.log(data);
+            // Do authenticated things
         })
+        .catch((err) => {
+            // Handle failure response
+            console.log(err);
+        });
       </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MS PG Gen</title>
-</head>
-<body>
-    <h1>MS PG Genesys</h1>
 </body>
 
 </html>
