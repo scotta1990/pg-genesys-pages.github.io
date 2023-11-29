@@ -5,6 +5,14 @@
     <script type="text/javascript">
         // Obtain a reference to the platformClient object
         const platformClient = require('platformClient');
+        const client = platformClient.ApiClient.instance;
+        client.loginImplicitGrant(clientId, redirectUri, { state: state})
+        .then((data => {
+            console.log(data)
+        }))
+        .catch((error) => {
+            console.log(error);
+        })
       </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
