@@ -19,7 +19,9 @@
         function getEmailConversationById(id) {
             const conversationId  = document.getElementById("conversationId").value;
 
-            console.log(conversationApiInstance.getConversationsEmailMessages(conversationId));
+            conversationApiInstance.getConversationsEmailMessages(conversationId).then((data) => {
+                console.log(data);
+            });
             return
         }
 
