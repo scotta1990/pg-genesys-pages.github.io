@@ -6,30 +6,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MS PG Gen</title>
-</head>
-<body>
-    <h1>MS PG Genesys</h1>
     <script type="text/javascript">
         // Obtain a reference to the platformClient object
         const platformClient = require('platformClient');
         const clientId = "4a707f1e-1ced-4dba-9c0d-9d1055addbdc";
         const redirectUri = "https://scotta1990.github.io/pg-genesys-pages.github.io/"
 
-        // Create API instance
-        var authorizationApi = new platformClient.AuthorizationApi();
+        let conversationApiInstance = new platformClient.ConversationsApi();
+
+        
+
+        function getEmailConversationById(id) {
+            const conversationId  = document.getElementById("conversationId").value;
+
+            console.log(conversationApiInstance.getConversationsEmailMessages(conversationId));
+            return
+        }
 
         const client = platformClient.ApiClient.instance;
         client.setEnvironment(platformClient.PureCloudRegionHosts.eu_west_2)
         client.loginImplicitGrant(clientId, redirectUri).then((data) => {
-            console.log("Here")
             console.log(data);
-            // Do authenticated things
-            return authorizationApi.getAuthorizationPermissions();
+            
         }).catch((err) => {
             // Handle failure response
             console.log(err);
         });
+
+
       </script>
+</head>
+<body>
+    <h1>MS PG Genesys</h1>
+    <input type="text" id="conversationId">
+    <a onclick="getEmailConversationById()"></a>
+
 </body>
 
 </html>
