@@ -16,12 +16,10 @@
         let conversationApiInstance = new platformClient.ConversationsApi();
 
         function getEmailConversationById(conversationId) {
-            const conversationId  = document.getElementById("conversationId").value;
-
             conversationApiInstance.getConversationsEmailMessages(conversationId).then((data) => {
                 console.log(data);
+                return data
             });
-            return
         }
 
         function getMessageById(conversationId, messageId) {
@@ -30,10 +28,10 @@
              })
         }
 
-        function lastFiveMessages() {
+        function getLastMessagesN(count=5) {
             const conversationId  = document.getElementById("conversationId").value;
             const conversation = getEmailConversationById(conversationId)["entities"];
-            conversation.slice(0, 4).map((message) => {
+            conversation.slice(0, count-1).map((message) => {
                 console.log(message["id"])
             }) 
         }
