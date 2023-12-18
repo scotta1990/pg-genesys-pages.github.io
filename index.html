@@ -20,24 +20,18 @@
                 const conversation = await conversationApiInstance.getConversationsEmailMessages(conversationId);
                 console.log(conversation);
                 return conversation;
-            }catch (error) {
+            } catch (error) {
                 console.log(error);
             }
         }
 
-        function getEmailConversationByIdOld(conversationId) {
-            const conversation = conversationApiInstance.getConversationsEmailMessages(conversationId).then((data) => {
-                console.log(data);
-                console.log(typeof data)
-                return data;
-            });
-            return conversation;
-        }
-
-        function getMessageById(conversationId, messageId) {
-             conversationApiInstance.getConversationsEmailMessage(conversationId, messageId).then((data)=> {
-
-             })
+        async function getMessageById(conversationId, messageId) {
+            try {
+                const message = await conversationApiInstance.getConversationsEmailMessage(conversationId, messageId);
+                return message
+            } catch (error) {
+                console.log(error)
+            }
         }
 
         async function getLastMessagesN(count=5) {
@@ -45,6 +39,8 @@
             const conversation = await getEmailConversationById(conversationId);
             conversation.entities.slice(0, count-1).map((message) => {
                 console.log(message.id)
+                const messageOutput = getMessageById(conversationId, message.id);
+                console.log(messageOutput)
             }) 
         }
 
@@ -65,7 +61,10 @@
     <h1>MS PG Genesys</h1>
     <input type="text" id="conversationId">
     <button onclick="getLastMessagesN(5)" class="btn btn-default">Test</button>
-    <a onclick="getLastMessagesN(5)"></a>
+
+    <div id="emailOutput">
+
+    </div>
 
 </body>
 
