@@ -18,7 +18,8 @@
         function getEmailConversationById(conversationId) {
             conversationApiInstance.getConversationsEmailMessages(conversationId).then((data) => {
                 console.log(data);
-                return JSON.parse(data)
+                console.log(typeof data)
+                return data
             });
         }
 
