@@ -37,10 +37,14 @@
         async function getLastMessagesN(count=5) {
             const conversationId  = document.getElementById("conversationId").value;
             const conversation = await getEmailConversationById(conversationId);
+            document.getElementById("emailOutput").innerHTML = ""
             conversation.entities.slice(0, count-1).map((message) => {
                 console.log(message.id)
                 const messageOutput = getMessageById(conversationId, message.id);
                 console.log(messageOutput)
+                document.getElementById("emailOutput").insertAdjacentHTML("afterend",
+                `<h3>${messageOutput.id}</h3>`
+                )
             }) 
         }
 
