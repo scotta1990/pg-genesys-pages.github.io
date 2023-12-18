@@ -29,9 +29,9 @@
              })
         }
 
-        function getLastMessagesN(count=5) {
+        async function getLastMessagesN(count=5) {
             const conversationId  = document.getElementById("conversationId").value;
-            const conversation = getEmailConversationById(conversationId);
+            const conversation = await getEmailConversationById(conversationId);
             conversation.entities.slice(0, count-1).map((message) => {
                 console.log(message.id)
             }) 
