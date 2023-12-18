@@ -15,15 +15,27 @@
 
         let conversationApiInstance = new platformClient.ConversationsApi();
 
-        
-
-        function getEmailConversationById(id) {
+        function getEmailConversationById(conversationId) {
             const conversationId  = document.getElementById("conversationId").value;
 
             conversationApiInstance.getConversationsEmailMessages(conversationId).then((data) => {
                 console.log(data);
             });
             return
+        }
+
+        function getMessageById(conversationId, messageId) {
+             conversationApiInstance.getConversationsEmailMessage(conversationId, messageId).then((data)=> {
+
+             })
+        }
+
+        function lastFiveMessages() {
+            const conversationId  = document.getElementById("conversationId").value;
+            const conversation = getEmailConversationById(conversationId)["entities"];
+            conversation.slice(0, 4).map((message) => {
+                console.log(message["id"])
+            }) 
         }
 
         const client = platformClient.ApiClient.instance;
