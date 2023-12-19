@@ -35,15 +35,15 @@
         }
 
         async function getLastMessagesN(count=5) {
+            document.getElementById("emailOutput").innerHTML = ""
             const conversationId  = document.getElementById("conversationId").value;
             const conversation = await getEmailConversationById(conversationId);
-            document.getElementById("emailOutput").innerHTML = ""
             conversation.entities.slice(0, count-1).map(async (message) => {
                 console.log(message.id)
                 const messageOutput = await getMessageById(conversationId, message.id);
                 console.log(messageOutput)
-                document.getElementById("emailOutput").insertAdjacentHTML("afterend",
-                `<div class="card-body"><h3 class="card-title">${messageOutput.subject}</h3><h2 class="card-subtitle">${messageOutput.id}</h2><p class="card-text">${messageOutput.htmlBody}</p></div>`
+                document.getElementById("emailOutput").insertAdjacentHTML("beforeend",
+                `<div class="card"><div class="card-body"><h2 class="card-title">${messageOutput.subject}</h2><h4 class="card-subtitle">${messageOutput.id}</h4><p class="card-text">${messageOutput.htmlBody}</p></div></div>`
                 )
             }) 
         }
