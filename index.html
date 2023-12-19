@@ -43,7 +43,7 @@
                 const messageOutput = await getMessageById(conversationId, message.id);
                 console.log(messageOutput)
                 document.getElementById("emailOutput").insertAdjacentHTML("afterend",
-                `<div class="card-body"><h3 class="card-title">${messageOutput.subject}</h3><h2 class="card-subtitle">${messageOutput.id}</h2><p class="card-text">${messageOutput.textBody}</p></div>`
+                `<div class="card-body"><h3 class="card-title">${messageOutput.subject}</h3><h2 class="card-subtitle">${messageOutput.id}</h2><p class="card-text">${messageOutput.htmlBody}</p></div>`
                 )
             }) 
         }
