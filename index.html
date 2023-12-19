@@ -43,7 +43,7 @@
                 const messageOutput = await getMessageById(conversationId, message.id);
                 console.log(messageOutput)
                 document.getElementById("emailOutput").insertAdjacentHTML("afterend",
-                `<h3>${messageOutput.id}</h3>`
+                `<div class="card-body"><h3 class="card-title">${messageOutput.subject}</h3><h2 class="card-subtitle">${messageOutput.id}</h2><p class="card-text">${messageOutput.textBody}</p></div>`
                 )
             }) 
         }
@@ -62,12 +62,14 @@
       </script>
 </head>
 <body>
-    <h1>MS PG Genesys</h1>
-    <input type="text" id="conversationId">
-    <button onclick="getLastMessagesN(5)" class="btn btn-default">Test</button>
-
-    <div id="emailOutput">
-
+    <div class="container">
+        <h1>MS PG Genesys</h1>
+        <input type="text" id="conversationId">
+        <button onclick="getLastMessagesN(5)" class="btn btn-default">Test</button>
+    
+        <div class="container" id="emailOutput">
+    
+        </div>
     </div>
 
 </body>
