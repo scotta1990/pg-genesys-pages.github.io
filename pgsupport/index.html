@@ -10,73 +10,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     />
-    <script type="text/javascript">
-      // Obtain a reference to the platformClient object
-      const platformClient = require('platformClient');
-      const clientId = '4a707f1e-1ced-4dba-9c0d-9d1055addbdc';
-      const redirectUri =
-        'https://scotta1990.github.io/pg-genesys-pages.github.io/';
-
-      let conversationApiInstance = new platformClient.ConversationsApi();
-
-      async function getEmailConversationById(conversationId) {
-        try {
-          const conversation =
-            await conversationApiInstance.getConversationsEmailMessages(
-              conversationId
-            );
-          console.log(conversation);
-          return conversation;
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      async function getMessageById(conversationId, messageId) {
-        try {
-          const message =
-            await conversationApiInstance.getConversationsEmailMessage(
-              conversationId,
-              messageId
-            );
-          return message;
-        } catch (error) {
-          console.log(error);
-        }
-      }
-
-      async function getLastMessagesN(count = 5) {
-        document.getElementById('emailOutput').innerHTML = '';
-        const conversationId = document.getElementById('conversationId').value;
-        const conversation = await getEmailConversationById(conversationId);
-        conversation.entities.slice(0, count - 1).map(async (message) => {
-          console.log(message.id);
-          const messageOutput = await getMessageById(
-            conversationId,
-            message.id
-          );
-          console.log(messageOutput);
-          document
-            .getElementById('emailOutput')
-            .insertAdjacentHTML(
-              'beforeend',
-              `<div class="card"><div class="card-body"><h2 class="card-title">${messageOutput.subject}</h2><h4 class="card-subtitle">${messageOutput.id}</h4><p class="card-text">${messageOutput.htmlBody}</p></div></div>`
-            );
-        });
-      }
-
-      const client = platformClient.ApiClient.instance;
-      client.setEnvironment(platformClient.PureCloudRegionHosts.eu_west_2);
-      client
-        .loginImplicitGrant(clientId, redirectUri)
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((err) => {
-          // Handle failure response
-          console.log(err);
-        });
-    </script>
     <script type="text/javascript" charset="utf-8">
       (function (g, e, n, es, ys) {
         g['_genesysJs'] = e;
@@ -105,13 +38,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>MS PG Genesys</h1>
-      <input type="text" id="conversationId" />
-      <button onclick="getLastMessagesN(5)" class="btn btn-primary">
-        Test
-      </button>
-
-      <div class="container" id="emailOutput"></div>
+      <h1>Pure Gym Support</h1>
     </div>
   </body>
 </html>
